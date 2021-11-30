@@ -20,12 +20,12 @@ RSpec.describe 'Landing page' do
   end
 
   it 'should have a button to create a new user' do
-    expect(page).to have_button("Create a New User")
+    expect(page).to have_button("Create a New User") #change to click_button once registration page exists
   end
 
   it "should have a list of existing users which links to the user's dashboard" do
-    expect(page).to have_content("#{@nate.email}'s Dashboard")
-    expect(page).to have_content("#{@billy.email}'s Dashboard")
+    expect(page).to have_link("#{@nate.email}'s Dashboard")
+    expect(page).to have_link("#{@billy.email}'s Dashboard") #change to click_link once dashboard exists
   end
 
   it "should have a link to go back to the landing page" do
