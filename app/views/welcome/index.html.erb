@@ -1,0 +1,11 @@
+<%= link_to 'Home', root_path %>
+
+
+<h1>Viewing Party</h1>
+
+
+<%= button_to "Create a New User", "/register" %>
+
+<% @users.each do |user|%>
+<p><%= user.email %>'s Dashboard</p>
+<% end %>
