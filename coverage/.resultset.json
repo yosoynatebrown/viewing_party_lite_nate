@@ -39,12 +39,26 @@
           null
         ]
       },
-      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/controllers/welcome_controller.rb": {
+      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/controllers/users_controller.rb": {
         "lines": [
+          1,
+          1,
+          null,
+          null,
+          1,
           1,
           null,
           1,
-          5,
+          1,
+          null,
+          0,
+          0,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
           null,
           null
         ]
@@ -52,6 +66,22 @@
       "/Users/nathanbrown/turing/3module/viewing_party_lite/app/controllers/application_controller.rb": {
         "lines": [
           1,
+          null,
+          null,
+          1,
+          1,
+          0,
+          null,
+          null
+        ]
+      },
+      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/controllers/welcome_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          5,
+          null,
           null
         ]
       },
@@ -94,6 +124,6 @@
         }
       }
     },
-    "timestamp": 1638303872
+    "timestamp": 1638306060
   }
 }
