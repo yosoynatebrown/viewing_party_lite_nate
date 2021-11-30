@@ -14,15 +14,17 @@ RSpec.describe "register user page", type: :view do
 
         expect(current_path).not_to eql('/register')
 
-        expect(page).to have_content("Martin's Dashboard")
+        expect(page).to have_content("Martin Scorsese's Dashboard")
         expect(page).to have_content("Viewing Parties")
       end
     end
     context 'when no information entered' do
-      xit 'should display errors' do
-        click_button 'Create Bulk discount'
+      it 'should display errors' do
+        click_button 'Register'
 
-        expect(page).to have_content("Error: Name can't be blank, Percent discount can't be blank, Quantity threshold can't be blank")
+        expect(current_path).to eql('/register')
+
+        expect(page).to have_content("Error: Name can't be blank, Email can't be blank")
       end
     end
   end
