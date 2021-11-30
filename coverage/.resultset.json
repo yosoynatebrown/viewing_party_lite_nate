@@ -10,11 +10,29 @@
       "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/user.rb": {
         "lines": [
           1,
+          1,
+          1,
           null
         ]
       },
       "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/application_record.rb": {
         "lines": [
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/user_viewing_party.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/viewing_party.rb": {
+        "lines": [
+          1,
           1,
           1,
           null
@@ -40,24 +58,6 @@
         "lines": [
           0,
           0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/user_viewing_party.rb": {
-        "lines": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "branches": {
-        }
-      },
-      "/Users/nathanbrown/turing/3module/viewing_party_lite/app/models/viewing_party.rb": {
-        "lines": [
           0,
           0
         ],
@@ -93,6 +93,6 @@
         }
       }
     },
-    "timestamp": 1638299299
+    "timestamp": 1638303466
   }
 }
