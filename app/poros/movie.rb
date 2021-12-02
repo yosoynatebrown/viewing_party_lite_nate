@@ -1,14 +1,30 @@
 class Movie
-  attr_reader :title, :vote_average, :genre, :summary, :cast, :length
+  attr_reader :id,
+              :title,
+              :vote_average,
+              :genres,
+              :summary,
+              :cast,
+              :length
 
   def initialize(data)
     @id = data[:id]
     @title = data[:title]
     @vote_average = data[:vote_average]
-    @genre = data[:genre]
-    @summary = data[:summary]
-    @cast = data[:cast]
-    @length = data[:length]
+    @vote_count = data[:vote_count]
+    @summary = data[:overview]
+    @genres = []
+    @cast = []
+    @length = ""
+  end
+
+  def add_details(data)
+    @genres = data[:genres].map {|genre| genre[:name]}
+    @length = "#{(data[:runtime] / 60)}:#{data[:runtime] % 60}"
+  end
+
+  def add_cast(data)
+    @cast = data[:cast].map {|cast| cast[:name]}
   end
 
 end
