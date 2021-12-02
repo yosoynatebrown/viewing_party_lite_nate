@@ -17,8 +17,6 @@ class TmdbFacade
     end
   end
 
-
-
   def service
     TmdbService.new
   end
