@@ -7,15 +7,23 @@ require 'rails_helper'
 #  Button to create a party
 
 RSpec.describe 'New Viewing Party Page' do
+  let(:data) { {
+    id: 1,
+    title: 'The Matrix',
+    vote_average: 7.7,
+    vote_count: 100,
+    summary: 'A guy named Neo does stuff',
+    length: 120
+  } }
   before(:each) do
     @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
-    @movie = Movie.new()
+    @movie = Movie.new(data)
     
-    visit "/users/#{@nate.id}/movies/#{@movie.id}/viewing_party/new"
+    visit "/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new"
   end
 
   it 'has the duration of party with default of movie runtime' do
-
+    save_and_open_page
   end
 
   it 'has a field to select date' do
@@ -31,6 +39,6 @@ RSpec.describe 'New Viewing Party Page' do
   end
 
   it 'has a button to create a party' do
-    
+
   end
 end
