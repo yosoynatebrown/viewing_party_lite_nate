@@ -2,14 +2,10 @@ class TmdbFacade
   def self.create_top_rated_movies
     Rails.cache.fetch('top_rated_movies', :expires => 4.hour) do
       json = service.top_rated_movies
-      id_array = json.map do |data|
-        data[:id]
+      json.map do |data|
+        Movie.new(data)
       end
-      id_array = id_array[0..39]
-      json = service.movie_details
-      id_array.map do |id|
-        service.movie_details
-
+    end
   end
 
   def self.create_search_movies(search)
@@ -20,6 +16,8 @@ class TmdbFacade
       end
     end
   end
+
+  def self.
 
   def service
     TmdbService.new
