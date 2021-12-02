@@ -38,6 +38,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'pry'
   gem 'faker'
+  gem 'figaro'
 end
 
 group :development do
@@ -47,13 +48,13 @@ group :development do
   gem 'rubocop-rails'
 end
 
-group :test do 
+group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'launchy'
   gem 'simplecov'
   gem 'shoulda-matchers'
-end 
+end
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
