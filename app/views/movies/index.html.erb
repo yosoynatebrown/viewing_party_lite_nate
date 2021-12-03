@@ -1,0 +1,12 @@
+<%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get %>
+
+<h3>Movie Results</h3>
+<body>
+    <ul>
+      <% @results.each do |result| %>
+       <li><%= link_to("#{result.title}", "/users/:user_id/movies/#{result.id}") %>
+            <%= result.vote_average %> </li>
+      <% end %>
+
+    </ul>
+</body>

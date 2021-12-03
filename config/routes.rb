@@ -7,10 +7,10 @@ Rails.application.routes.draw do
   resources :users, only: [:create]
   resources :users, only: [:show] do
     resources :discover, only: [:index]
-    resources :movies, only: [:show] do
+    resources :movies, only: [:index, :show] do
       resources :viewing_parties, only: [:new, :create]
     end
   end
 
-  
+
 end
