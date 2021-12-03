@@ -42,8 +42,6 @@ RSpec.describe '' do
     click_button('Top Movies')
 
     expect(page).to have_content("8.7")
-
-
   end
 
 end
