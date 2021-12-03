@@ -15,12 +15,16 @@ class Movie
     @summary = data[:overview]
     @genres = []
     @cast = []
-    @length = ""
+    @length = 0
   end
 
   def add_details(data)
     @genres = data[:genres].map {|genre| genre[:name]}
-    @length = "#{(data[:runtime] / 60)}:#{data[:runtime] % 60}"
+    @length = data[:runtime]
+  end
+
+  def length_hours
+    "#{@length / 60)}:#{@length % 60}"
   end
 
   def add_cast(data)
