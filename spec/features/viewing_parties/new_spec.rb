@@ -25,8 +25,8 @@ RSpec.describe 'New Viewing Party Page' do
   it 'has the duration of party with default of movie runtime' do
     expect(page).to have_field('length', with: '139')
   end
-
-  it 'has a working field to select date' do
+context 'when valid info entered' do 
+  it 'has a working form to create viewing parties' do
     fill_in 'length', with: '140'
 
     select('2019', from: '_date_1i')
@@ -54,4 +54,36 @@ RSpec.describe 'New Viewing Party Page' do
 
     expect(current_path).to eql("/users/#{@nate.id}/")
   end
+context 'when invalid length entered' do 
+  it 'errors out' do
+    fill_in 'length', with: '100'
+
+    select('2019', from: '_date_1i')
+    select('June', from: '_date_2i')
+    select('12', from: '_date_3i')
+
+    select('07 AM', from: '_start_time_4i')
+    select('30', from: '_start_time_5i')
+
+    expect(page).to have_select('_date_1i', selected: '2019')
+    expect(page).to have_select('_date_2i', selected: 'June')
+    expect(page).to have_select('_date_3i', selected: '12')
+
+    expect(page).to have_select('_start_time_4i', selected: '07 AM')
+    expect(page).to have_select('_start_time_5i', selected: '30')
+
+    within "#user-#{@jack.id}" do
+      check
+    end
+    within "#user-#{@lucy.id}" do
+      check
+    end
+
+    click_button 'Create Viewing Party'
+
+    expect(current_path).to eql("/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new")
+    expect(page).to have_content("Error: Something went wrong. Check that your party duration is not shorter than your movie runtime")
+  end
+end
+end
 end
