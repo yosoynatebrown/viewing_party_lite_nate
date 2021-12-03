@@ -23,7 +23,7 @@ RSpec.describe 'New Viewing Party Page' do
   end
 
   it 'has the duration of party with default of movie runtime' do
-    save_and_open_page
+
   end
 
   it 'has a field to select date' do
