@@ -2,13 +2,23 @@
 
 <%= form_with url: '/users/:user_id/movies/:movie_id/viewing_parties/', local: true do |f|%>
     <p><%= f.label :duration_in_minutes %>
-    <%= f.number_field :duration_in_minutes %></p>
+    <%= f.number_field :length %></p>
 
     <p><%= f.label :date %>
     <%= f.date_select :date %></p>
 
     <p><%= f.label :start_time %>
-    <%= f.time_select :start_time, {ampm: true}%></p>
+    <%= f.time_select :start_time, {ampm: true, ignore_date: true}%></p>
+
+    <% @users.each do |user| %>
+    <div id="user-<%= user.id %>" >
+    <%= check_box_tag "viewing_party[users][]", user.id %>
+    <%= user.name %>
+    </div>
+    <% end %>
+  <%= f.hidden_field :host_id, value: params[:user_id] %>
+  <%= f.hidden_field :movie_id, value: params[:movie_id] %>
+
 
     <p><%= f.submit "Create Viewing Party"%></p>
 <% end %>

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Govt Search' do
-  it 'can get all senator data', :vcr do
+  xit 'can get all senator data', :vcr do
     service = TmdbService.new
     response = service.top_rated_movies
 
