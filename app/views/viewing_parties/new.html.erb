@@ -1,0 +1,14 @@
+<h1>New Viewing Party</h1>
+
+<%= form_with url: '/users/:user_id/movies/:movie_id/viewing_parties/', local: true do |f|%>
+    <p><%= f.label :duration_in_minutes %>
+    <%= f.number_field :duration_in_minutes %></p>
+
+    <p><%= f.label :date %>
+    <%= f.date_select :date %></p>
+
+    <p><%= f.label :start_time %>
+    <%= f.time_select :start_time, {ampm: true}%></p>
+
+    <p><%= f.submit "Create Viewing Party"%></p>
+<% end %>
