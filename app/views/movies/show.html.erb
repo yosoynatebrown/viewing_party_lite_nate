@@ -1,0 +1,17 @@
+<h1> Movie Details </h1>
+
+
+
+<%= button_to "Create Viewing Party", "/users/#{@user.id}/movies/#{params[:id]}/viewing_parties/new", method: :get %>
+<%= button_to "Discover Movies", "/users/#{@user.id}/discover", method: :get %>
+
+<br>
+<br>
+
+<h2> <%= @movie.title %></h2>
+<h3> Rating: <%= @movie.vote_average %></h3>
+<h3> Runtime: <%= @movie.length_hours %></h3>
+<h3> Genres: <%= @movie.genres %></h3>
+<h3> Summary: <%= @movie.summary %></h3>
+<h3> Cast: <%= @movie.cast[0..9] %> </h3>
+<h3> # of Reviews: <%= @movie.vote_count %></h3>

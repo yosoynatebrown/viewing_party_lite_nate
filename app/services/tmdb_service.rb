@@ -18,12 +18,14 @@ class TmdbService
   def self.movie_details(movie_id)
     conn = Faraday.new(url: "https://api.themoviedb.org")
     response = conn.get("/3/movie/#{movie_id}?api_key=#{ENV['tmdb_key']}&language=en-US")
+
     JSON.parse(response.body, symbolize_names: true)
   end
 
   def self.movie_credits(movie_id)
     conn = Faraday.new(url: "https://api.themoviedb.org")
     response = conn.get("/3/movie/#{movie_id}/credits?api_key=#{ENV['tmdb_key']}&language=en-US")
+
     JSON.parse(response.body, symbolize_names: true)
   end
 
