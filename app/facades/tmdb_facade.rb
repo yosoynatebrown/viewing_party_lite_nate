@@ -13,7 +13,7 @@ class TmdbFacade
       json = TmdbService.movie_details(id)
       movie = Movie.new(json)
       movie.add_details(json)
-      json = service.movie_credits(id)
+      json = TmdbService.movie_credits(id)
       movie.add_cast(json)
       movie
     end

@@ -4,7 +4,7 @@
 <body>
     <ul>
       <% @results.each do |result| %>
-       <li><%= link_to("#{result.title}", "/users/:user_id/movies/#{result.id}") %>
+       <li><%= link_to("#{result.title}", "/users/#{@user.id}/movies/#{result.id}") %>
             <%= result.vote_average %> </li>
       <% end %>
 

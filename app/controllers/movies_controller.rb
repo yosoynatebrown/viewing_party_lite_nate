@@ -7,4 +7,8 @@ class MoviesController < ApplicationController
       @results = TmdbFacade.create_search_movies(params[:movie])[0..39]
     end
   end
+  def show
+    @user = User.find(params[:user_id])
+    @movie = TmdbFacade.movie_details(params[:id])
+  end
 end
