@@ -30,9 +30,12 @@ class TmdbService
   end
 
 
-  # def reviews
-  
-  # end
+  def self.reviews(movie_id)
+    conn = Faraday.new(url: "https://api.themoviedb.org")
+    response = conn.get("/3/movie/#{movie_id}/reviews?api_key=#{ENV['tmdb_key']}&language=en-US")
+
+    JSON.parse(response.body, symbolize_names: true)
+  end
 
   def get_url(url)
     Faraday.new(url)

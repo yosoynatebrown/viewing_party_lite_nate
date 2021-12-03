@@ -34,5 +34,4 @@ class Movie
   def add_cast(data)
     @cast = data[:cast].map {|cast| cast[:name]}
   end
-
 end

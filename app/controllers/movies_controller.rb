@@ -10,5 +10,6 @@ class MoviesController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @movie = TmdbFacade.movie_details(params[:id])
+    @reviews = TmdbFacade.create_reviews(params[:id])
   end
 end

@@ -12,7 +12,7 @@ RSpec.describe 'TMDB Facade' do
 
     it '.movie_details', :vcr do
     movie = TmdbFacade.movie_details(550)
-    
+
 
     expect(movie).to be_a Movie
   end
@@ -23,6 +23,15 @@ RSpec.describe 'TMDB Facade' do
     expect(movies).to be_an Array
     movies.each do |movie|
       expect(movie).to be_a Movie
+    end
+  end
+
+    it '.create_reviews', :vcr do
+    reviews = TmdbFacade.create_reviews(550)
+    
+    expect(reviews).to be_an Array
+    reviews.each do |review|
+      expect(review).to be_a Review
     end
   end
 end
