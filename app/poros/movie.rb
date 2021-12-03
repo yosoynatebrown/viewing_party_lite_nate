@@ -24,7 +24,7 @@ class Movie
   end
 
   def length_hours
-    "#{@length / 60)}:#{@length % 60}"
+    "#{@length / 60}:#{@length % 60}"
   end
 
   def add_cast(data)
