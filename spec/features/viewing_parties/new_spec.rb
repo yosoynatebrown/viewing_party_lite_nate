@@ -8,12 +8,7 @@ require 'rails_helper'
 
 RSpec.describe 'New Viewing Party Page' do
   let(:data) { {
-    id: 1,
-    title: 'The Matrix',
-    vote_average: 7.7,
-    vote_count: 100,
-    summary: 'A guy named Neo does stuff',
-    length: 120
+    id: 550,
   } }
 
   before(:each) do
@@ -27,12 +22,12 @@ RSpec.describe 'New Viewing Party Page' do
     visit "/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new"
   end
 
-  xit 'has the duration of party with default of movie runtime' do
-    expect(page).to have_field('length', with: '120')
+  it 'has the duration of party with default of movie runtime' do
+    expect(page).to have_field('length', with: '139')
   end
 
   it 'has a working field to select date' do
-    fill_in 'length', with: '125'
+    fill_in 'length', with: '140'
 
     select('2019', from: '_date_1i')
     select('June', from: '_date_2i')

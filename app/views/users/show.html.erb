@@ -7,3 +7,34 @@
 
 
 <h2> Viewing Parties </h2>
+
+<% @user.viewing_parties.each_with_index do |party, index|%>
+<% movie = TmdbFacade.movie_details(party.movie_id)%>
+<% if party.host_id == @user.id %>
+  <h3>Parties I'm Hosting </h3>
+<h3><%= link_to movie.title, "/users/#{@user.id}/movies/#{movie.id}" %></h3>
+<img src ="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>">
+<h3>Date and Time: <%= "#{party.date}, #{party.start_time.strftime('%l:%M%p')}" %> </h3>
+  <% party.users.each do |user| %>
+    <% if user == @user %>
+        <p><%= user.name %> (host)</p>
+    <% else%>
+    <p><%= user.name %> (invited)</p>
+    <% end %>
+  <% end %>
+
+  <% end %>
+
+<h3>All Parties I'm Attending: </h3>
+ <h3><%= link_to movie.title, "/users/#{@user.id}/movies/#{movie.id}" %></h3>
+<img src ="https://image.tmdb.org/t/p/w500<%=movie.poster_path%>">
+<h3>Date and Time: <%= "#{party.date}, #{party.start_time.strftime('%l:%M%p')}" %> </h3>
+<h3> Attendees </h3>
+<% party.users.each do |user| %>
+    <% if user == @user %>
+        <strong><%= user.name %></strong>
+    <% else%>
+    <p><%= user.name %></p>
+    <% end %>
+  <% end %>
+<% end %>

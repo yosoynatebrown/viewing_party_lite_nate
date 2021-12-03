@@ -2,7 +2,7 @@ class ViewingPartiesController < ApplicationController
   def new
     @viewing_party = ViewingParty.new
     @users = User.all
-    # @movie = TmdbFacade.movie_details(params[:movie_id])
+    @movie = TmdbFacade.movie_details(params[:movie_id])
   end
 
   def create
@@ -26,6 +26,6 @@ class ViewingPartiesController < ApplicationController
 
   private
       def party_params
-        params.permit(:length, :date, :start_time, :host_id)
+        params.permit(:length, :date, :start_time, :host_id, :movie_id)
       end
 end
