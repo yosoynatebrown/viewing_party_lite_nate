@@ -1,1 +1,9 @@
 <h1> Discover Page </h1>
+
+<%= form_with url: "/users/#{@user.id}/movies", local: true do |f|%>
+    <%= f.label :movie %>
+    <%= f.text_field :movie %>
+
+    <%= f.submit "Search for Movie"%>
+<% end %>
+<%= button_to "Top Movies", "/users/#{@user.id}/movies?q=top%20rated" %>
