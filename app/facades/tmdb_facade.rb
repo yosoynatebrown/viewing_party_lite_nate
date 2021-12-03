@@ -9,14 +9,14 @@ class TmdbFacade
   end
 
   def self.movie_details(id)
-    Rails.cache.fetch('movie_details', :expires => 4.hour) do
+    # Rails.cache.fetch('movie_details', :expires => 4.hour) do
       json = TmdbService.movie_details(id)
       movie = Movie.new(json)
       movie.add_details(json)
       json = TmdbService.movie_credits(id)
       movie.add_cast(json)
       movie
-    end
+  # end
   end
 
   def self.create_search_movies(search)

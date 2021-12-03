@@ -6,7 +6,8 @@ class Movie
               :genres,
               :summary,
               :cast,
-              :length
+              :length,
+              :poster_path
 
   def initialize(data)
     @id = data[:id]
@@ -17,11 +18,13 @@ class Movie
     @genres = []
     @cast = []
     @length = 0
+    @poster_path = ''
   end
 
   def add_details(data)
     @genres = data[:genres].map {|genre| genre[:name]}
     @length = data[:runtime]
+    @poster_path = data[:poster_path]
   end
 
   def length_hours
