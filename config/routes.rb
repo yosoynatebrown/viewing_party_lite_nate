@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: 'welcome#index'
 
   get '/register', to: 'users#new'
-  # get '/users/:user_id/movies/:movie_id/viewing-party/new', to: 'viewing_parties#new'
 
   resources :users, only: [:create]
   resources :users, only: [:show] do
