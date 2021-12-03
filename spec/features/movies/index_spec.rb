@@ -19,4 +19,31 @@ RSpec.describe '' do
     visit "/users/#{@nate.id}/discover"
   end
 
+  it 'shows movie results' do
+    click_button('Top Movies')
+
+    expect(page).to have_content("Movie Results")
+  end
+
+  it 'has a button to go to discover movies' do
+    click_button('Top Movies')
+    click_button('Discover Movies')
+
+    expect(page).to have_current_path("/users/#{@nate.id}/discover")
+  end
+
+  it 'shows names of movies with a link to movie show page' do
+    click_button('Top Movies')
+
+    expect(page).to have_link("The Godfather")
+  end
+
+  it 'shows vote average for each movie displayed' do
+    click_button('Top Movies')
+
+    expect(page).to have_content("8.7")
+
+
+  end
+
 end
