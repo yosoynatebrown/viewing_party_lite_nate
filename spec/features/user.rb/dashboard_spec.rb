@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe '' do
   before(:each) do
     @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
+    @billy = User.create!(name: 'Billy', email: 'billy@nate.com')
+    @jack = User.create!(name: 'Jack', email: 'jack@nate.com')
+    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com')
 
     visit "/users/#{@nate.id}"
   end
@@ -15,7 +18,7 @@ RSpec.describe '' do
     expect(page).to have_button("Discover Movies")
   end
 
-  xit 'has a section that lists viewing parties' do
-  
+  it 'has a section that lists viewing parties' do
+    
   end
 end

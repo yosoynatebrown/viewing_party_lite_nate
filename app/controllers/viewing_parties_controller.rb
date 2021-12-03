@@ -8,10 +8,15 @@ class ViewingPartiesController < ApplicationController
   def create
     viewing_party = ViewingParty.new(party_params)
     user = User.find(params[:host_id])
-
+    user_ids = params[:users]
     
     if viewing_party.save
       viewing_party.users << user
+      user_ids.each do |id|
+        invitee = User.find(id.to_i)
+        viewing_party.users << invitee
+      end
+      
       redirect_to "/users/#{user.id}/"
     else
       redirect_to "/users/#{params[:user_id]}/movies/#{params[:movie_id]}/viewing_parties/new"

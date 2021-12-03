@@ -48,7 +48,6 @@ RSpec.describe 'New Viewing Party Page' do
     expect(page).to have_select('_start_time_4i', selected: '07 AM')
     expect(page).to have_select('_start_time_5i', selected: '30')
 
-    save_and_open_page
     within "#user-#{@jack.id}" do
       check
     end

@@ -12,7 +12,7 @@
 
     <% @users.each do |user| %>
     <div id="user-<%= user.id %>" >
-    <%= check_box_tag "viewing_party[users][]", user.id %>
+    <%= check_box_tag "users[]", user.id %>
     <%= user.name %>
     </div>
     <% end %>
