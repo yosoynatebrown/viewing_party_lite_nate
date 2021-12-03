@@ -20,11 +20,21 @@ class TmdbFacade
   end
 
   def self.create_search_movies(search)
-    Rails.cache.fetch('review', :expires => 4.hour) do
+    Rails.cache.fetch('search_movies', :expires => 4.hour) do
       json = TmdbService.search_movies(search)
       json.map do |data|
         Movie.new(data)
       end
     end
+  end
+
+  def self.create_reviews(movie_id)
+    # Rails.cache.fetch('review', :expires => 4.hour) do
+      json = TmdbService.reviews(movie_id)
+    
+      json[:results].map do |data|
+        Review.new(movie_id, data)
+      end
+    # end
   end
 end

@@ -45,4 +45,16 @@ RSpec.describe 'Movies search' do
     expect(first_actor_data).to have_key :name
     expect(first_actor_data[:name]).to be_a String
   end
+
+  it 'can get movie reviews', :vcr do
+    response = TmdbService.reviews(550)
+
+    expect(response).to be_a Hash
+    expect(response[:results]).to be_an Array
+
+    first_review_data = response[:results][0]
+
+    expect(first_review_data).to have_key :author
+    expect(first_review_data[:author]).to be_a String
+  end
 end

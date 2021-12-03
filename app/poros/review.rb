@@ -1,10 +1,10 @@
 class Review
   attr_reader :movie_id, :author, :text
 
-  def initialize(data)
-    @movie_id = data[:movie_id]
+  def initialize(movie_id, data)
+    @movie_id = movie_id
     @author = data[:author]
-    @text = data[:text]
+    @text = data[:content]
   end
 
 end

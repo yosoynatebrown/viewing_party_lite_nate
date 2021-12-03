@@ -15,3 +15,8 @@
 <h3> Summary: <%= @movie.summary %></h3>
 <h3> Cast: <%= @movie.cast[0..9] %> </h3>
 <h3> # of Reviews: <%= @movie.vote_count %></h3>
+<h3>Reviews: <% @reviews.each do |review| %></h3>
+  <p>Author: <%= review.author %></p>
+  <p><%= review.text %></p>
+<% end %>
+
