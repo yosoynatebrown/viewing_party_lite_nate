@@ -16,6 +16,7 @@ class TmdbFacade
       json = service.movie_credits(id)
       movie.add_cast(json)
       movie
+    end
   end
 
   def self.create_search_movies(search)
