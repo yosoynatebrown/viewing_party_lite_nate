@@ -30,11 +30,10 @@ class TmdbService
   end
 
   # def reviews
-  #   response = get_url('https://api.themoviedb.org/3').get("little-esty-shop/contributors")
-  #   JSON.parse(response.body, symbolize_names: true)
+  
   # end
 
-  def self.get_url(url)
+  def get_url(url)
     Faraday.new(url)
   end
 
