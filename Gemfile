@@ -41,6 +41,7 @@ group :development, :test do
   gem 'figaro'
   gem 'faker'
   gem 'figaro'
+  gem 'faraday'
 end
 
 group :development do
@@ -56,6 +57,8 @@ group :test do
   gem 'launchy'
   gem 'simplecov'
   gem 'shoulda-matchers'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 

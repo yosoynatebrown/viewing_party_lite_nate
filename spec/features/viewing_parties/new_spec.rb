@@ -8,37 +8,50 @@ require 'rails_helper'
 
 RSpec.describe 'New Viewing Party Page' do
   let(:data) { {
-    id: 1,
-    title: 'The Matrix',
-    vote_average: 7.7,
-    vote_count: 100,
-    summary: 'A guy named Neo does stuff',
-    length: 120
+    id: 550,
   } }
+
   before(:each) do
     @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
+    @billy = User.create!(name: 'Billy', email: 'billy@nate.com')
+    @jack = User.create!(name: 'Jack', email: 'jack@nate.com')
+    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com')
+
     @movie = Movie.new(data)
     
     visit "/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new"
   end
 
   it 'has the duration of party with default of movie runtime' do
-
+    expect(page).to have_field('length', with: '139')
   end
 
-  it 'has a field to select date' do
+  it 'has a working field to select date' do
+    fill_in 'length', with: '140'
 
-  end
+    select('2019', from: '_date_1i')
+    select('June', from: '_date_2i')
+    select('12', from: '_date_3i')
 
-  it 'has a field to select start time' do
+    select('07 AM', from: '_start_time_4i')
+    select('30', from: '_start_time_5i')
 
-  end
+    expect(page).to have_select('_date_1i', selected: '2019')
+    expect(page).to have_select('_date_2i', selected: 'June')
+    expect(page).to have_select('_date_3i', selected: '12')
 
-  it 'has a checkbox next to each existing user in system' do
+    expect(page).to have_select('_start_time_4i', selected: '07 AM')
+    expect(page).to have_select('_start_time_5i', selected: '30')
 
-  end
+    within "#user-#{@jack.id}" do
+      check
+    end
+    within "#user-#{@lucy.id}" do
+      check
+    end
 
-  it 'has a button to create a party' do
+    click_button 'Create Viewing Party'
 
+    expect(current_path).to eql("/users/#{@nate.id}/")
   end
 end
