@@ -9,8 +9,8 @@ require 'rails_helper'
 
 RSpec.describe 'Landing page' do
   before(:each) do
-    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
-    @billy = User.create!(name: 'Billy GOAT', email: 'billygoat@billy.com')
+    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @billy = User.create!(name: 'Billy GOAT', email: 'billygoat@billy.com', password: 'thisispassword', password_confirmation: 'thisispassword')
 
     visit '/'
   end

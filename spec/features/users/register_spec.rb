@@ -9,6 +9,8 @@ RSpec.describe "register user page", type: :view do
       it 'should create a new user' do
         fill_in 'Name', with: "Martin Scorsese"
         fill_in 'Email', with: 'goodfellas123@movies.com'
+        fill_in 'Password', with: 'password123'
+        fill_in 'Password confirmation', with: 'password123'
 
         click_button 'Register'
 
@@ -24,7 +26,22 @@ RSpec.describe "register user page", type: :view do
 
         expect(current_path).to eql('/register')
 
-        expect(page).to have_content("Error: Name can't be blank, Email can't be blank")
+        expect(page).to have_content("Error: Name can't be blank, Email can't be blank, Password digest can't be blank, Password can't be blank")
+      end
+    end
+
+    context 'when non-matching passwords entered' do
+      it 'should display errors' do
+        fill_in 'Name', with: "Martin Scorsese"
+        fill_in 'Email', with: 'goodfellas123@movies.com'
+        fill_in 'Password', with: 'password123'
+        fill_in 'Password confirmation', with: 'password456'
+
+        click_button 'Register'
+
+        expect(current_path).to eql('/register')
+
+        expect(page).to have_content("Error: Password confirmation doesn't match")
       end
     end
   end

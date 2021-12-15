@@ -12,10 +12,10 @@ RSpec.describe 'New Viewing Party Page' do
   } }
 
   before(:each) do
-    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
-    @billy = User.create!(name: 'Billy', email: 'billy@nate.com')
-    @jack = User.create!(name: 'Jack', email: 'jack@nate.com')
-    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com')
+    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @billy = User.create!(name: 'Billy', email: 'billy@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @jack = User.create!(name: 'Jack', email: 'jack@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
 
     @movie = Movie.new(data)
     

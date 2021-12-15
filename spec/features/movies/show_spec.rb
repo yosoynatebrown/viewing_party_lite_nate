@@ -2,10 +2,10 @@ require 'rails_helper'
 
 RSpec.describe '' do
   before(:each) do
-    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com')
-    @billy = User.create!(name: 'Billy', email: 'billy@fake.com')
-    @jack = User.create!(name: 'Jack', email: 'jack@nate.com')
-    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com')
+    @nate = User.create!(name: 'Nate Dawg', email: 'natedawg@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @billy = User.create!(name: 'Billy', email: 'billy@fake.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @jack = User.create!(name: 'Jack', email: 'jack@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
+    @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
 
     @party = ViewingParty.create!(length: 150,
                                   host_id: @nate.id,
@@ -44,8 +44,7 @@ RSpec.describe '' do
     expect(page).to have_content('Genres: ["Drama", "Crime"]')
     expect(page).to have_content('Summary: Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.')
     expect(page).to have_content('Cast: ["Marlon Brando", "Al Pacino", "James Caan", "Robert Duvall", "Richard S. Castellano", "Diane Keaton", "Talia Shire", "Gianni Russo", "Sterling Hayden", "Al Lettieri"]')
-    expect(page).to have_content("# of Reviews: 15133")
-
+    expect(page).to have_content("# of Reviews: 15174")
   end
 
 
