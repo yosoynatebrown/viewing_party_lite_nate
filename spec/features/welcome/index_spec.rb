@@ -33,4 +33,10 @@ RSpec.describe 'Landing page' do
 
     expect(current_path).to eql('/')
   end
+
+  it 'should have a login link' do
+    click_link 'Log In'
+
+    expect(current_path).to eql('/login')
+  end
 end

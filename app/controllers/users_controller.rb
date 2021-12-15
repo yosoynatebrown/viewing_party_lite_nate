@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    # @user = User.find(params[:id])
   end
   def new
   end
@@ -13,6 +13,18 @@ class UsersController < ApplicationController
     else
       redirect_to "/register"
       flash[:alert] = "Error: #{error_message(user.errors)}"
+    end
+  end
+
+  def login_form
+  end
+
+  def login_user
+    if @user = User.find_by(email: params[:email]).authenticate(params[:password])
+      render "users/show"
+    else
+      redirect_to "/login"
+      flash[:alert] = "Error: Authentication failed"
     end
   end
 

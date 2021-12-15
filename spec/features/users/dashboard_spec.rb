@@ -17,6 +17,11 @@ RSpec.describe '' do
     @party.users << @jack
 
     visit "/users/#{@nate.id}"
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
   end
 
   it "has user's name" do

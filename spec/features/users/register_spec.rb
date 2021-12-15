@@ -16,6 +16,10 @@ RSpec.describe "register user page", type: :view do
 
         expect(current_path).not_to eql('/register')
 
+        fill_in 'Email', with: 'goodfellas123@movies.com'
+        fill_in 'Password', with: 'password123'
+        click_button 'Log In'
+
         expect(page).to have_content("Martin Scorsese's Dashboard")
         expect(page).to have_content("Viewing Parties")
       end
