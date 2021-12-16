@@ -15,8 +15,14 @@ RSpec.describe '' do
     @party.users << @nate
     @party.users << @billy
     @party.users << @jack
+    visit "/login"
 
-    visit "/users/#{@nate.id}/discover"
+    fill_in 'Email', with: 'natedawg@nate.com'
+    fill_in 'Password', with: 'thisispassword'
+
+    click_button 'Log In'
+
+    visit "/dashboard/discover"
   end
 
   it 'shows movie results' do
@@ -29,7 +35,7 @@ RSpec.describe '' do
     click_button('Top Movies')
     click_button('Discover Movies')
 
-    expect(page).to have_current_path("/users/#{@nate.id}/discover")
+    expect(page).to have_current_path("/dashboard/discover")
   end
 
   it 'shows names of movies with a link to movie show page' do

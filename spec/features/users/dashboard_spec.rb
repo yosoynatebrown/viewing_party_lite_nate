@@ -16,7 +16,7 @@ RSpec.describe '' do
     @party.users << @billy
     @party.users << @jack
 
-    visit "/users/#{@nate.id}"
+    visit "/login"
 
    fill_in 'Email', with: 'natedawg@nate.com'
    fill_in 'Password', with: 'thisispassword'

@@ -18,8 +18,15 @@ RSpec.describe 'New Viewing Party Page' do
     @lucy = User.create!(name: 'Lucy', email: 'lucy@nate.com', password: 'thisispassword', password_confirmation: 'thisispassword')
 
     @movie = Movie.new(data)
+
+    visit "/login"
+
+    fill_in 'Email', with: 'natedawg@nate.com'
+    fill_in 'Password', with: 'thisispassword'
+
+    click_button 'Log In'
     
-    visit "/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new"
+    visit "/dashboard/movies/#{@movie.id}/viewing_parties/new"
   end
 
   it 'has the duration of party with default of movie runtime' do
@@ -52,7 +59,7 @@ context 'when valid info entered' do
 
     click_button 'Create Viewing Party'
 
-    expect(current_path).to eql("/users/#{@nate.id}/")
+    expect(current_path).to eql("/dashboard")
   end
 context 'when invalid length entered' do 
   it 'errors out' do
@@ -81,7 +88,7 @@ context 'when invalid length entered' do
 
     click_button 'Create Viewing Party'
 
-    expect(current_path).to eql("/users/#{@nate.id}/movies/#{@movie.id}/viewing_parties/new")
+    expect(current_path).to eql("/dashboard/movies/#{@movie.id}/viewing_parties/new")
     expect(page).to have_content("Error: Something went wrong. Check that your party duration is not shorter than your movie runtime")
   end
 end
