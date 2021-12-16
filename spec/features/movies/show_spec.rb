@@ -15,37 +15,84 @@ RSpec.describe '' do
     @party.users << @nate
     @party.users << @billy
     @party.users << @jack
-
-    visit "/users/#{@nate.id}/discover"
-    click_button('Top Movies')
-    click_link('The Godfather')
   end
 
   it 'shows Movie Details' do
-    expect(page).to have_content("Movie Details")
+    visit '/login'
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
+
+    visit '/dashboard/discover'
+    click_button('Top Movies')
+    click_link('The Godfather')
+
+    expect(page).to have_content('Movie Details')
   end
 
   it 'has a button to go to discover movies' do
+    visit '/login'
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
+
+    visit '/dashboard/discover'
+    click_button('Top Movies')
+    click_link('The Godfather')
+
     click_button('Discover Movies')
 
-    expect(page).to have_current_path("/users/#{@nate.id}/discover")
+    expect(page).to have_current_path('/dashboard/discover')
   end
 
   it 'has a button to create viewing party' do
+    visit '/login'
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
+
+    visit '/dashboard/discover'
+    click_button('Top Movies')
+    click_link('The Godfather')
+
     click_button('Create Viewing Party')
 
-    expect(page).to have_current_path("/users/#{@nate.id}/movies/238/viewing_parties/new")
+    expect(page).to have_current_path('/dashboard/movies/238/viewing_parties/new')
   end
 
   it 'shows the movie title, rating, runtime, genres, summary, cast, # of reviews' do
-    expect(page).to have_content("The Godfather")
-    expect(page).to have_content("Rating: 8.7")
-    expect(page).to have_content("Runtime: 2:55")
-    expect(page).to have_content('Genres: ["Drama", "Crime"]')
+    visit '/login'
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
+
+    visit '/dashboard/discover'
+    click_button('Top Movies')
+    click_link('The Godfather')
+
+    expect(page).to have_content('The Godfather')
+    expect(page).to have_content('Rating: 8.7')
+    expect(page).to have_content('Runtime: 2:55')
+    expect(page).to have_content("Genres: [\"Drama\", \"Crime\"]")
     expect(page).to have_content('Summary: Spanning the years 1945 to 1955, a chronicle of the fictional Italian-American Corleone crime family. When organized crime family patriarch, Vito Corleone barely survives an attempt on his life, his youngest son, Michael steps in to take care of the would-be killers, launching a campaign of bloody revenge.')
-    expect(page).to have_content('Cast: ["Marlon Brando", "Al Pacino", "James Caan", "Robert Duvall", "Richard S. Castellano", "Diane Keaton", "Talia Shire", "Gianni Russo", "Sterling Hayden", "Al Lettieri"]')
-    expect(page).to have_content("# of Reviews: 15174")
+    expect(page).to have_content("Cast: [\"Marlon Brando\", \"Al Pacino\", \"James Caan\", \"Robert Duvall\", \"Richard S. Castellano\", \"Diane Keaton\", \"Talia Shire\", \"Gianni Russo\", \"Sterling Hayden\", \"Al Lettieri\"]")
+    expect(page).to have_content('# of Reviews')
   end
 
+  it 'does not allow a visitor to create a viewing party' do
+    visit '/dashboard/movies/238'
 
+    click_button 'Create Viewing Party'
+
+    expect(current_path).to eq('/dashboard/movies/238')
+    expect(page).to have_content('You must be logged in or registered to create a movie party')
+  end
 end

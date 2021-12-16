@@ -1,7 +1,16 @@
 class UsersController < ApplicationController
+
   def show
-    # @user = User.find(params[:id])
+    begin 
+      @user = User.find(session[:user_id])
+    rescue ActiveRecord::RecordNotFound => e
+      flash[:alert] = "Error: You have to be logged in or registered to access the dashboard"
+      
+      redirect_to root_path
+    end
+
   end
+
   def new
   end
 
@@ -9,22 +18,11 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      redirect_to "/users/#{user.id}"
+      session[:user_id] = user.id
+      redirect_to "/dashboard"
     else
       redirect_to "/register"
       flash[:alert] = "Error: #{error_message(user.errors)}"
-    end
-  end
-
-  def login_form
-  end
-
-  def login_user
-    if @user = User.find_by(email: params[:email]).authenticate(params[:password])
-      render "users/show"
-    else
-      redirect_to "/login"
-      flash[:alert] = "Error: Authentication failed"
     end
   end
 

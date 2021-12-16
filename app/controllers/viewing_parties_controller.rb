@@ -1,8 +1,13 @@
 class ViewingPartiesController < ApplicationController
   def new
-    @viewing_party = ViewingParty.new
-    @users = User.all
-    @movie = TmdbFacade.movie_details(params[:movie_id])
+    if session[:user_id]
+      @viewing_party = ViewingParty.new
+      @users = User.all
+      @movie = TmdbFacade.movie_details(params[:movie_id])
+    else
+      flash[:alert] = "Error: You must be logged in or registered to create a movie party"
+      redirect_to "/dashboard/movies/#{params[:movie_id]}"
+    end
   end
 
   def create
@@ -19,9 +24,9 @@ class ViewingPartiesController < ApplicationController
         viewing_party.users << invitee
       end
       
-      redirect_to "/users/#{user.id}/"
+      redirect_to "/dashboard"
     else
-      redirect_to "/users/#{params[:user_id]}/movies/#{params[:movie_id]}/viewing_parties/new"
+      redirect_to "/dashboard/movies/#{params[:movie_id]}/viewing_parties/new"
       flash[:alert] = "Error: Something went wrong. Check that your party duration is not shorter than your movie runtime"
     end
   end

@@ -16,7 +16,14 @@ RSpec.describe '' do
     @party.users << @billy
     @party.users << @jack
 
-    visit "/users/#{@nate.id}/discover"
+    visit "/login"
+
+   fill_in 'Email', with: 'natedawg@nate.com'
+   fill_in 'Password', with: 'thisispassword'
+
+   click_button 'Log In'
+
+    visit "/dashboard/discover"
   end
   it 'shows discover page' do
     expect(page).to have_content("Discover Page")
@@ -25,13 +32,13 @@ RSpec.describe '' do
   it 'can search for movies' do
     fill_in :movie, with: 'Click'
     click_button('Search for Movie')
-    expect(page).to have_current_path("/users/#{@nate.id}/movies?utf8=✓&movie=Click&commit=Search+for+Movie")
+    expect(page).to have_current_path("/dashboard/movies?utf8=✓&movie=Click&commit=Search+for+Movie")
   end
 
   it 'has a button to search top movies' do
     click_button('Top Movies')
 
-    expect(page).to have_current_path("/users/#{@nate.id}/movies?q=top_rated")
+    expect(page).to have_current_path("/dashboard/movies?q=top_rated")
 
   end
 end
