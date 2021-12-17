@@ -1,6 +1,6 @@
 class MoviesController < ApplicationController
   def index
-    @user = User.find(session[:user_id])
+    @user = current_user
     if params[:q] == 'top_rated'
       @results = TmdbFacade.create_top_rated_movies[0..39]
     else
@@ -9,7 +9,7 @@ class MoviesController < ApplicationController
   end
   def show
     begin 
-      @user = User.find(session[:user_id])
+      @user = current_user
     rescue ActiveRecord::RecordNotFound => e
       flash[:alert] = "Error: You must be logged in or registered to create a movie party"
     ensure

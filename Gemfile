@@ -40,7 +40,6 @@ group :development, :test do
   gem 'pry'
   gem 'figaro'
   gem 'faker'
-  gem 'faraday'
 end
 
 group :development do
