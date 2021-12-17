@@ -5,7 +5,7 @@ class UsersController < ApplicationController
       @user = User.find(session[:user_id])
     rescue ActiveRecord::RecordNotFound => e
       flash[:alert] = "Error: You have to be logged in or registered to access the dashboard"
-      
+
       redirect_to root_path
     end
 

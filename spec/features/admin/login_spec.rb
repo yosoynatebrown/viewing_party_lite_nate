@@ -3,13 +3,18 @@ require "rails_helper"
 describe "Admin login" do
   describe "happy path" do
     it "I can log in as an admin and get to my dashboard" do
-	    admin = User.create({email: "superuser@awesome-site.com",
+	    admin = User.create!({
+                        name: "Admin",
+                        email: "superuser@awesome-site.com",
                         password: "super_secret_passw0rd",
+                        password_confirmation: "super_secret_passw0rd",
                         role: 1})
 
       visit login_path
+      
       fill_in :email, with: admin.email
       fill_in :password, with: admin.password
+
       click_button 'Log In'
 
       expect(current_path).to eq(admin_dashboard_path)
