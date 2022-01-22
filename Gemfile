@@ -57,6 +57,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'webmock'
   gem 'vcr'
+  gem 'rspec_junit_formatter'
 end
 
 
